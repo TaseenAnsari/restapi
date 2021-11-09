@@ -62,12 +62,14 @@ app.put('/api/users/:id', (req, res) => { // edit data on based of id
 });
 
 app.delete('/api/users/:id',(req,res)=>{ // delete data on based of id
-    for (let i = 0; i < userData.length; i++){
-        if(userData[i].id === parseInt(req.params.id))
-        userData.splice(i,1);
+    // for (let i = 0; i < userData.length; i++){
+    //     if(userData[i].id === parseInt(req.params.id))
+        const user= userData.find(u=>u.id===parseInt(req.params.id));
+         if(!user) return res.status(400).send("There is no user of the given id!!!")
+        
+
+         userData.splice(userData.indexOf(user),1);
         return res.send(JSON.stringify(userData));
-    }
-    return res.send("user doesn't  exist")
 })
 
 app.listen(5500, () => console.log('Server Successfuly Created at http://127.0.0.1:5500'));
