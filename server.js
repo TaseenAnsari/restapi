@@ -67,7 +67,7 @@ app.delete('/api/users/:id',(req,res)=>{ // delete data on based of id
         const user= userData.find(u=>u.id===parseInt(req.params.id));
          if(!user) return res.status(400).send("There is no user of the given id!!!")
         
-         
+
          userData.splice(userData.indexOf(user),1);
         return res.send(JSON.stringify(userData));
 })
